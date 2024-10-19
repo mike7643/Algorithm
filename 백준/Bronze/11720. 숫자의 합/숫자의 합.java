@@ -1,17 +1,19 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        int n = sc.nextInt();
-        String a = sc.next();
-        int result = 0;
+        int n = Integer.parseInt(br.readLine()); //개수 췍     
+        String sNum = br.readLine(); //공백없는 숫자 췍
+        char[] cNum = sNum.toCharArray(); // char 배열로
+        int sum=0;
         
-        sc.close();
-        for(int i =0;i<n;i++){
-            result += a.charAt(i) - '0';
+        for(int i =0 ; i<cNum.length; i++){
+            sum+= cNum[i] - 48;
         }
-        System.out.print(result);
+        
+        System.out.println(sum);
     }
 }
