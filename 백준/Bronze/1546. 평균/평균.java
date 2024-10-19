@@ -1,30 +1,25 @@
 import java.util.*;
+import java.io.*;
 
 class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        int num = sc.nextInt();
-        int[] arr = new int[num];
-        for(int i=0;i<arr.length;i++){
-            arr[i]=sc.nextInt();
-        }
+        int n = Integer.parseInt(br.readLine());
         
-        //가장 잘 본 성적 거르기
-        int max=0;
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]>max){
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int[] arr = new int[n];
+        int max =0;
+        int sum =0;
+        
+        for(int i =0;i<arr.length;i++){
+            arr[i]=Integer.parseInt(st.nextToken());
+            if(max<arr[i])
                 max=arr[i];
-            }
+            sum+=arr[i];
         }
         
-        //새로운 평균 구하기
-        double sco=0;
-        for(int i=0;i<arr.length;i++){
-            sco += (double) arr[i]/max*100;
-        }
-        double res = sco/arr.length;
-        
-        System.out.println(res);
+        System.out.println(sum*100.0/max/n);
     }
 }
