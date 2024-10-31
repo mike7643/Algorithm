@@ -6,10 +6,7 @@ class Main{
         String fir = sc.next();
         String sec = sc.next();
         
-        if(Integer.parseInt(change(fir))>Integer.parseInt(change(sec))){
-            System.out.println(change(fir));
-        }else
-            System.out.println(change(sec));
+        System.out.println(Math.max(Integer.parseInt(change(fir)), Integer.parseInt(change(sec))));
     }
         
     static String change(String a){
