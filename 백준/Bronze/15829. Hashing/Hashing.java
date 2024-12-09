@@ -6,17 +6,15 @@ class Main {
         int n = sc.nextInt();
         sc.nextLine();
         String s = sc.nextLine();
-
-        char[] chr = s.toCharArray();
-
-        int total=0;
-
+        long total=0;
+        long r =1;
+        int mod = 1234567891;
 
         for(int i = 0 ; i<n ; i++){
-            int a = chr[i]-96;
-
-            total += (int)(a*Math.pow(31,i));
+            total += ((s.charAt(i) - 'a' + 1) * r) % mod;
+            r = (r*31)%mod;
         }
-        System.out.print(total);
+
+        System.out.print(total%mod);
     }
 }
