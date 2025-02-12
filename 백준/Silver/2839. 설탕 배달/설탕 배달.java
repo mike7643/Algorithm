@@ -1,26 +1,27 @@
-import java.util.*;
+import java.util.Scanner;
 
-class Main {
+public class Main {
     public static void main(String[] args) {
+        //그리디
         Scanner sc = new Scanner(System.in);
-
         int n = sc.nextInt();
-        int a;
-        int b;
-        int total;
-        int min = Integer.MAX_VALUE;
+        int cnt =0;
 
-        for (a = 0; a <= 1673; a++) {
-            for (b = 0; b <= 1000; b++) {
-                if (n == 3 * a + 5 * b) {
-                    total = a + b;
-                    if (min > total)
-                        min = total;
-                }
+        while (true) {
+            if (n < 0) {
+                System.out.println(-1);
+                break;
             }
+            
+            // 현재 n을 5로 나누어 떨어지는지 확인
+            if (n % 5 == 0) {
+                System.out.println(n / 5 + cnt);
+                break;
+            }
+            
+            // 3 하나 사용
+            n -= 3;
+            cnt++;
         }
-        if (min == Integer.MAX_VALUE) {
-            System.out.println(-1);
-        }else System.out.println(min);
     }
 }
