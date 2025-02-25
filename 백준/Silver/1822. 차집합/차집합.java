@@ -29,8 +29,6 @@ public class Main {
                 res.add(num);
             }
         }
-        // 구체적인 원소 오름차순 정렬 출력
-        Collections.sort(res);
 
         StringBuilder sb = new StringBuilder();
         if (res.isEmpty()) {
