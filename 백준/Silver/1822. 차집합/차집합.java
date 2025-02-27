@@ -1,45 +1,33 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        TreeSet<Integer> set1 = new TreeSet<>();
-        TreeSet<Integer> set2 = new TreeSet<>();
-
-        int a = Integer.parseInt(st.nextToken());
-        int b = Integer.parseInt(st.nextToken());
-
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < a; i++) {
-            set1.add(Integer.parseInt(st.nextToken()));
-        }
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < b; i++) {
-            set2.add(Integer.parseInt(st.nextToken()));
-        }
-        // 집합 a에는 속하면서 집합 b에는 속하지 않는 원소의 개수
-        List<Integer> res = new ArrayList<>();
-        for (int num : set1) {
-            if (!set2.contains(num)) {
-                res.add(num);
-            }
-        }
-
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
-        if (res.isEmpty()) {
-            sb.append("0");
-        } else {
-            sb.append(res.size()).append("\n");
-            for (int num : res) {
-                sb.append(num).append(" ");
-            }
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        Set<Integer> A = new TreeSet<>();
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            A.add(Integer.parseInt(st.nextToken()));
         }
 
-        System.out.println(sb);
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < M; i++) {
+            A.remove(Integer.parseInt(st.nextToken()));
+        }
+
+        sb.append(A.size()).append("\n");
+        for (int n : A) {
+            sb.append(n).append(" ");
+        }
+
+        bw.write(sb.toString());
+        bw.flush();
     }
 }
