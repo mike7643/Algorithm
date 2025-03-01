@@ -29,6 +29,7 @@ public class Main {
         }
 
         visit = new boolean[N][N];
+        // 색약 모드를 위해 G를 R로 변환
         for (int j = 0; j < N; j++) {
             for (int i = 0; i < N; i++) {
                 if (arr[j][i] == 'G') {
@@ -52,7 +53,7 @@ public class Main {
     }
 
     static void bfs(int y, int x) {
-        Queue<int[]> q = new LinkedList<>();
+        Queue<int[]> q = new ArrayDeque<>();
         q.add(new int[]{y, x});
         visit[y][x] = true;
         char color = arr[y][x];
@@ -62,6 +63,7 @@ public class Main {
             for (int i = 0; i < 4; i++) {
                 int ny = p[0] + dy[i];
                 int nx = p[1] + dx[i];
+                // 방문하지 않았고 같은 색상일 경우 탐색 진행
                 if (0 <= ny && ny < N && 0 <= nx && nx < N && !visit[ny][nx]) {
                     if (arr[ny][nx] == color) {
                         visit[ny][nx] = true;
