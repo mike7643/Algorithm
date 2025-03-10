@@ -9,8 +9,8 @@ public class Main {
     static int[] dy = {-1, 1, 0, 0};
     static int[] dx = {0, 0, -1, 1};
     static int[][] map;
-    static boolean[][] visit;
     static int n, m;
+    static boolean[][] visit;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,49 +21,47 @@ public class Main {
         map = new int[n + 1][m + 1];
         visit = new boolean[n + 1][m + 1];
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 0; i < n; i++) {
             String s = br.readLine();
-            for (int j = 1; j <= m; j++) {
-                map[i][j] = s.charAt(j - 1) - '0';
+            for (int j = 0; j < m; j++) {
+                map[i + 1][j + 1] = s.charAt(j) - '0';
             }
         }
-
-        System.out.println(bfs(1, 1));
+        bfs(1, 1);
+        System.out.println(map[n][m]);
     }
 
-    private static int bfs(int y, int x) {
+    private static void bfs(int y, int x) {
         Deque<Node> queue = new ArrayDeque<>();
-        queue.offer(new Node(y, x, 1));
-        visit[y][x] = true;
+        queue.offer(new Node(y, x));
+        visit[y][x]= true;
 
         while (!queue.isEmpty()) {
             Node polled = queue.poll();
 
-            if (polled.y == n && polled.x == m) {
-                return polled.cnt; // n, m에 도착하면 최단 거리 반환 !
-            }
-
             for (int i = 0; i < 4; i++) {
+
                 int ny = polled.y + dy[i];
                 int nx = polled.x + dx[i];
 
-                if (ny < 1 || ny > n || nx < 1 || nx > m || visit[ny][nx] || map[ny][nx] == 0)
+
+                if (ny < 1 || ny > n || nx < 1 || nx > m || visit[ny][nx] || map[ny][nx]==0)
                     continue; // 벽이거나, 방문했다면 X
 
-                queue.offer(new Node(ny, nx, polled.cnt + 1));
-                visit[ny][nx] = true;
+                map[ny][nx]= map[polled.y][polled.x] + 1; // 누적 거리 계산
+
+                visit[ny][nx]= true;
+                queue.offer(new Node(ny, nx));
             }
         }
-        return -1; // 여까지 안옴.
     }
-
     static class Node {
-        int y, x, cnt;
+        int y;
+        int x;
 
-        public Node(int y, int x, int cnt) {
+        public Node(int y, int x) {
             this.y = y;
             this.x = x;
-            this.cnt = cnt;
         }
     }
 }
